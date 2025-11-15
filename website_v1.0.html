@@ -202,6 +202,7 @@
                         0 0 0 1px rgba(255, 255, 255, 0.2) inset,
                         0 0 30px rgba(42, 82, 152, 0.4);
             border-color: rgba(255, 255, 255, 0.3);
+            border-bottom: 4px solid #000;
         }
 
         /* Game Badges */
@@ -450,6 +451,54 @@
         }
         
         .play-button:active {
+            transform: translateY(-1px) scale(1.02);
+        }
+
+        /* Card Play Button */
+        .card-play-button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: white;
+            background: linear-gradient(135deg, #2a5298, #1e3c72, #0f2027);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            transform: translateZ(0);
+            z-index: 1;
+            text-transform: uppercase;
+        }
+        
+        .card-play-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .card-play-button:hover::before {
+            left: 100%;
+        }
+
+        .card-play-button:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4), 0 0 15px rgba(42, 82, 152, 0.5);
+            background-position: 100% 50%;
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .card-play-button:active {
             transform: translateY(-1px) scale(1.02);
         }
 
@@ -1101,6 +1150,31 @@
             transition: opacity 0.3s ease;
         }
         
+        /* Shield emoji pulse animation */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Basketball emoji bounce animation */
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-5px) rotate(-10deg); }
+            50% { transform: translateY(-8px) rotate(0deg); }
+            75% { transform: translateY(-5px) rotate(10deg); }
+        }
+        
+        .shield-emoji {
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+        
+        .basketball-emoji {
+            display: inline-block;
+            animation: bounce 2s ease-in-out infinite;
+        }
+        
         .banner-content {
             display: flex;
             align-items: center;
@@ -1123,8 +1197,24 @@
     </style>
 </head>
 <body>
+    <!-- ALE BASKETBALL RELEASED Banner -->
+    <div class="updates-banner" style="top: 0; background: linear-gradient(135deg, #ff6b35, #f7931e);">
+        <div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
+            <div style="font-weight: 700; font-size: 1.2rem; margin-bottom: 4px; display: flex; align-items: center; gap: 8px;">
+                <span class="basketball-emoji">🏀</span> 🎉 ALE BASKETBALL RELEASED TODAY!
+            </div>
+            <div style="font-size: 0.95rem; opacity: 0.9; text-align: center; line-height: 1.4;">
+                The schools want one last challenge… and Ale is ready!<br>
+                Jump into the FIRST EVER 2-player game in the Ale Universe — team up or battle it out with friends, family, or anyone brave enough to face the court.
+            </div>
+            <div style="font-size: 0.9rem; margin-top: 6px; font-weight: 500; opacity: 0.9; text-align: center;">
+                It's time to beat the school one more time — on the basketball court! 🏀🔥
+            </div>
+        </div>
+    </div>
+    
     <!-- Request Updates Banner -->
-    <div class="updates-banner">
+    <div class="updates-banner" style="top: 120px;">
         <a href="https://docs.google.com/forms/d/18D8s71EnHxE64NsIrcAIBNH8WyYdBirW86Mxfl1Ofoo/" target="_blank" rel="noopener noreferrer">
             Request for New Updates
         </a>
@@ -1141,43 +1231,43 @@
         <!-- Gallery Grid -->
         <div class="gallery">
             <!-- Game 1: ALE CLICKER DEMO -->
-            <div class="thumbnail-card" data-game="ale_clicker_demo">
+            <div class="thumbnail-card" data-game="ale_clicker_demo" data-game-name="ALE CLICKER DEMO">
                 <img src="alegamesthumbnails/ale_clicker_demo.svg" alt="ALE CLICKER DEMO" onerror="this.src='https://via.placeholder.com/400x225/2c3e50/ffffff?text=Thumbnail+Not+Found';">
                 <div class="thumbnail-label">ALE CLICKER DEMO</div>
             </div>
 
             <!-- Game 2: ALE CLICKER -->
-            <div class="thumbnail-card" data-game="ale_clicker">
+            <div class="thumbnail-card" data-game="ale_clicker" data-game-name="ALE CLICKER">
                 <img src="alegamesthumbnails/ale_clicker.svg" alt="ALE CLICKER" onerror="this.src='https://via.placeholder.com/400x225/2c3e50/ffffff?text=Thumbnail+Not+Found';">
                 <div class="thumbnail-label">ALE CLICKER</div>
             </div>
 
             <!-- Game 3: ALE CLICKER 2 -->
-            <div class="thumbnail-card" data-game="ale_clicker2">
+            <div class="thumbnail-card" data-game="ale_clicker2" data-game-name="ALE CLICKER 2">
                 <img src="alegamesthumbnails/ale_clicker2.svg" alt="ALE CLICKER 2" onerror="this.src='https://via.placeholder.com/400x225/2c3e50/ffffff?text=Thumbnail+Not+Found';">
                 <div class="thumbnail-label">ALE CLICKER 2</div>
             </div>
 
             <!-- Game 4: FLUTE LOOPS CLICKER -->
-            <div class="thumbnail-card" data-game="flute_loops_clicker">
+            <div class="thumbnail-card" data-game="flute_loops_clicker" data-game-name="FLUTE LOOPS CLICKER">
                 <img src="alegamesthumbnails/flute_loops_clicker.svg" alt="FLUTE LOOPS CLICKER" onerror="this.src='https://via.placeholder.com/400x225/2c3e50/ffffff?text=Thumbnail+Not+Found';">
                 <div class="thumbnail-label">FLUTE LOOPS CLICKER</div>
             </div>
 
             <!-- Game 5: ALE CHASE -->
-            <div class="thumbnail-card" data-game="ale_chase">
+            <div class="thumbnail-card" data-game="ale_chase" data-game-name="ALE CHASE">
                 <img src="alegamesthumbnails/ale_chase.svg" alt="ALE CHASE" onerror="this.src='https://via.placeholder.com/400x225/2c3e50/ffffff?text=Thumbnail+Not+Found';">
                 <div class="thumbnail-label">ALE CHASE</div>
             </div>
             
             <!-- Game 6: ALE SHIELD -->
-            <div class="thumbnail-card" data-game="ale_shield">
+            <div class="thumbnail-card" data-game="ale_shield" data-game-name="ALE SHIELD">
                 <img src="alegamesthumbnails/ale_shield.svg" alt="ALE SHIELD" onerror="this.src='https://via.placeholder.com/400x225/2c3e50/ffffff?text=Thumbnail+Not+Found';">
                 <div class="thumbnail-label">ALE SHIELD</div>
             </div>
 
             <!-- Game 7: ALE THE HAUNTED MANSION (DISCONTINUED) -->
-            <div class="thumbnail-card limited-edition" data-game="ale_the_haunted_mansion">
+            <div class="thumbnail-card limited-edition" data-game="ale_the_haunted_mansion" data-game-name="ALE THE HAUNTED MANSION">
                 <img src="alegamesthumbnails/ale_the_haunted_mansion.svg" alt="ALE THE HAUNTED MANSION (DISCONTINUED)" onerror="this.src='https://via.placeholder.com/400x225/2c3e50/ffffff?text=Thumbnail+Not+Found';">
                 <div class="thumbnail-label">ALE THE HAUNTED MANSION</div>
                 <div class="game-badge discontinued-badge">DISCONTINUED</div>
@@ -1189,21 +1279,32 @@
             </div>
 
             <!-- Game 8: ALE SANTA -->
-            <div class="thumbnail-card limited-edition" data-game="ale_santa">
+            <div class="thumbnail-card limited-edition" data-game="ale_santa" data-game-name="ALE SANTA">
                 <img src="alegamesthumbnails/ale_santa.svg" alt="ALE SANTA" onerror="this.src='https://via.placeholder.com/400x225/2c3e50/ffffff?text=Thumbnail+Not+Found';">
                 <div class="thumbnail-label">ALE SANTA</div>
                 <div class="game-badge new-badge">LIMITED EDITION</div>
             </div>
-        </div>
-        
-        <!-- COMING SOON Section -->
-        <h2 class="coming-soon-title">COMING SOON</h2>
-        <div class="gallery">
-            <!-- ALE BASKETBALL -->
-            <div class="thumbnail-card" data-game="ale_basketball">
+
+            <!-- Game 9: ALE BASKETBALL -->
+            <div class="thumbnail-card" data-game="ale_basketball" data-game-name="ALE BASKETBALL">
                 <img src="alegamesthumbnails/ale_basketball.svg" alt="ALE BASKETBALL" onerror="this.src='https://via.placeholder.com/400x225/2c3e50/ffffff?text=Thumbnail+Not+Found';">
                 <div class="thumbnail-label">ALE BASKETBALL</div>
-                <div class="game-badge new-badge">COMING SOON</div>
+                <a href="alegameshtml/ale_basketball.html" class="card-play-button">Play Game</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- COMING SOON Section -->
+    <div class="coming-soon-section">
+        <h2 class="coming-soon-title">COMING SOON</h2>
+        <div class="gallery">
+            <!-- Ale Flight Game -->
+            <div class="thumbnail-card" data-game="ale_flight" data-game-name="ALE FLIGHT">
+                <img src="alegamesthumbnails/ale_flight.svg" alt="ALE FLIGHT" onerror="this.src='https://via.placeholder.com/400x225/2c3e50/ffffff?text=Thumbnail+Not+Found';">
+                <div class="thumbnail-label">ALE FLIGHT</div>
+                <div class="coming-soon-sticker">COMING SOON</div>
+                <!-- Play Game button hidden until release -->
+                <button class="play-button" style="display: none;">Play Game</button>
             </div>
         </div>
     </div>
@@ -1291,6 +1392,11 @@
             'ale_basketball': {
                 name: 'ALE BASKETBALL',
                 thumbnail: 'alegamesthumbnails/ale_basketball.svg',
+                html: 'alegameshtml/ale_basketball.html'
+            },
+            'ale_flight': {
+                name: 'ALE FLIGHT',
+                thumbnail: 'alegamesthumbnails/ale_flight.svg',
                 html: ''
             }
         };
@@ -1323,11 +1429,19 @@ Sprint, dodge, and escape the teachers trying to catch you.
 Earn achievements, unlock unique skins, and test your reflexes in this fast-paced runner adventure.
 Stay on the move — and don't get caught!`,
             
-            'ale_shield': `<span class="version"><strong>VERSION:</strong> V1.0</span>
+            'ale_shield': `<span class="version"><strong>VERSION:</strong> V1.1</span>
+
+Updated by: MAC_DONALDY
 
 The chase is over… now it's time to fight back.
 In <em>Ale Shield</em>, you must master timing, upgrades, and precision as you defend your ground from endless challenges.
-Combine fast reflexes and smart strategy to survive wave after wave — and prove that not even school can stop you now.
+
+<strong>What's New in V1.1:</strong>
+• New enemy types and behaviors
+• Enhanced shield mechanics
+• Performance improvements
+• Bug fixes and balance changes
+
 Equip your shield. Defend your legacy.
 <strong>The Ale era continues.</strong>`,
 
@@ -1351,13 +1465,10 @@ Race across snowy lands, collect lost presents,
 and save Christmas before time runs out.
 
 A limited-edition holiday adventure available only for a short time!`,
-            'ale_basketball': `<span class="version"><strong>VERSION:</strong> V1.0</span>
-<span class="version"><strong>RELEASE DATE:</strong> November 15, 2025</span>
-
-Ale wants to challenge the school to a basketball game!
-All you have to do is win — and you'll never have to go back to class.
-This is the very first 2-player game released in the Ale Games universe,
-bringing competition, fun, and chaos to the court!`
+            'ale_basketball': `<span class="version"><strong>VERSION:</strong> V1.0</span>   <span class="version"><strong>RELEASE DATE:</strong> November 15, 2025</span>                
+Ale wants to challenge the school to a basketball game!       All you have to do is win â€” and you'll never have to go back to class.                     This is the very first 2-player game released in the Ale Games universe,                     bringing competition, fun, and chaos to the court!`,
+            'ale_flight': `<span class="version"><strong>VERSION:</strong> V1.0</span>   <span class="version"><strong>STATUS:</strong> In Development</span>                
+ALE GOT A TEMPORARY POWER!                     He wants to fly through pipes like a flappy bird!                     Can you survive the challenges and help Ale reach new heights?                     Get ready for an exciting new adventure in the Ale Games universe!`
         };
 
         // DOM Elements
@@ -1376,37 +1487,35 @@ bringing competition, fun, and chaos to the court!`
         // State
         let currentGame = null;
 
-        // Add click event listeners to all thumbnail cards using event delegation
+        // Initialize game cards
         document.addEventListener('DOMContentLoaded', () => {
-            // Re-query the elements to ensure we have the latest references
             const cards = document.querySelectorAll('.thumbnail-card');
+            
             cards.forEach(card => {
-                card.style.cursor = 'pointer'; // Ensure cursor shows as pointer
-                card.addEventListener('click', (e) => {
-                    e.stopPropagation(); // Prevent event bubbling
-                    const gameId = card.getAttribute('data-game');
-                    if (gameId) {
-                        openGameModal(gameId);
-                    }
+                card.addEventListener('click', () => {
+                    const gameId = card.dataset.game;
+                    openGameModal(gameId);
                 });
             });
         });
 
         // Function to open game modal
-        // Sets up the modal with the selected game's thumbnail and description
-        // For "coming soon" games (like ALE SHIELD), only shows preview without Play button
         function openGameModal(gameId) {
             currentGame = games[gameId];
             if (!currentGame) return;
+            
+            // Fade out announcement banners
+            const basketballBanner = document.querySelector('.updates-banner[style*="ff6b35"]');
+            const requestBanner = document.querySelector('.updates-banner[style*="120px"]');
+            if (basketballBanner) basketballBanner.classList.add('hidden');
+            if (requestBanner) requestBanner.classList.add('hidden');
             
             // Set preview image
             previewImage.src = currentGame.thumbnail;
             previewImage.alt = currentGame.name;
 
-            // Set game description with fade-in animation
+            // Set game description
             gameDescription.innerHTML = gameDescriptions[gameId] || '';
-            
-            // Check if game has HTML file
             
             // Reset state
             gamePreview.style.display = 'flex';
@@ -1415,25 +1524,14 @@ bringing competition, fun, and chaos to the court!`
             gameDescription.classList.remove('active');
             gameFrame.src = '';
             
-            // Hide play button for coming soon/limited edition games
+            // Hide play button for coming soon games
             if (!currentGame.html) {
                 playButton.style.display = 'none';
             } else {
                 playButton.style.display = 'block';
             }
 
-            // Special styling for Haunted Mansion modal
-            if (gameId === 'ale_haunted_mansion') {
-                gameContainer.style.background = 'rgba(10, 25, 41, 0.95)';
-                gameDescription.style.border = '1px solid rgba(0, 150, 199, 0.3)';
-                gameDescription.style.boxShadow = '0 8px 20px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(0, 150, 199, 0.1) inset, 0 0 30px rgba(0, 150, 199, 0.2)';
-            } else {
-                gameContainer.style.background = 'rgba(255, 255, 255, 0.12)';
-                gameDescription.style.border = '1px solid rgba(255, 255, 255, 0.15)';
-                gameDescription.style.boxShadow = '0 8px 20px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1) inset, 0 0 30px rgba(42, 82, 152, 0.2)';
-            }
-
-            // Show modal with a small delay to allow CSS transitions
+            // Show modal
             modalOverlay.style.display = 'flex';
             setTimeout(() => {
                 modalOverlay.classList.add('active');
@@ -1445,6 +1543,41 @@ bringing competition, fun, and chaos to the court!`
                 }, 100);
             }, 10);
         }
+
+        // Close modal
+        function closeModal() {
+            modalOverlay.classList.remove('active');
+            document.documentElement.style.overflow = '';
+            
+            // Fade in announcement banners
+            const basketballBanner = document.querySelector('.updates-banner[style*="ff6b35"]');
+            const requestBanner = document.querySelector('.updates-banner[style*="120px"]');
+            if (basketballBanner) basketballBanner.classList.remove('hidden');
+            if (requestBanner) requestBanner.classList.remove('hidden');
+            
+            // Clear iframe after modal closes
+            setTimeout(() => {
+                gameFrame.src = '';
+                currentGame = null;
+            }, 300);
+        }
+
+        // Close button functionality
+        closeButton.addEventListener('click', closeModal);
+
+        // Close on overlay click (outside container)
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) {
+                closeModal();
+            }
+        });
+
+        // Close on ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+                closeModal();
+            }
+        });
 
         // Play button click - load the game
         playButton.addEventListener('click', () => {
@@ -1463,56 +1596,6 @@ bringing competition, fun, and chaos to the court!`
             }, 100);
         });
 
-        // Close modal
-        function closeModal() {
-            modalOverlay.classList.remove('active');
-            document.documentElement.style.overflow = '';
-            
-            // Removed banner-related JavaScript variables and cleanup code
-            
-            // Exit fullscreen if active
-            if (document.fullscreenElement) {
-                document.exitFullscreen();
-            }
-
-            // Reset after animation
-            setTimeout(() => {
-                gamePreview.style.display = 'flex'; // Make sure preview is visible when modal reopens
-                gameFrame.src = '';
-                gameFrame.classList.remove('active');
-                gameControls.classList.remove('active');
-                gameDescription.classList.remove('active');
-                gameDescription.innerHTML = '';
-                currentGame = null;
-                
-                // Reset modal styles
-                gameContainer.style.background = 'rgba(255, 255, 255, 0.12)';
-                gameDescription.style.border = '1px solid rgba(255, 255, 255, 0.15)';
-                gameDescription.style.boxShadow = '0 8px 20px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1) inset, 0 0 30px rgba(42, 82, 152, 0.2)';
-                
-                // Hide modal completely after close
-                setTimeout(() => {
-                    modalOverlay.style.display = 'none';
-                }, 300);
-            }, 300);
-        }
-
-        closeButton.addEventListener('click', closeModal);
-
-        // Close on overlay click (outside container)
-        modalOverlay.addEventListener('click', (e) => {
-            if (e.target === modalOverlay) {
-                closeModal();
-            }
-        });
-
-        // Close on ESC key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
-                closeModal();
-            }
-        });
-
         // Fullscreen toggle
         fullscreenButton.addEventListener('click', () => {
             if (!document.fullscreenElement) {
@@ -1521,8 +1604,6 @@ bringing competition, fun, and chaos to the court!`
                     gameContainer.requestFullscreen();
                 } else if (gameContainer.webkitRequestFullscreen) {
                     gameContainer.webkitRequestFullscreen();
-                } else if (gameContainer.mozRequestFullScreen) {
-                    gameContainer.mozRequestFullScreen();
                 } else if (gameContainer.msRequestFullscreen) {
                     gameContainer.msRequestFullscreen();
                 }
@@ -1532,15 +1613,13 @@ bringing competition, fun, and chaos to the court!`
                     document.exitFullscreen();
                 } else if (document.webkitExitFullscreen) {
                     document.webkitExitFullscreen();
-                } else if (document.mozCancelFullScreen) {
-                    document.mozCancelFullScreen();
                 } else if (document.msExitFullscreen) {
                     document.msExitFullscreen();
                 }
             }
         });
 
-        // Update fullscreen button on fullscreen change
+        // Fullscreen change event listeners
         document.addEventListener('fullscreenchange', updateFullscreenButton);
         document.addEventListener('webkitfullscreenchange', updateFullscreenButton);
         document.addEventListener('mozfullscreenchange', updateFullscreenButton);
@@ -1556,108 +1635,4 @@ bringing competition, fun, and chaos to the court!`
             }
         }
 
-        // Version overlay elements
-        const versionOverlay = document.getElementById('versionOverlay');
-        const versionButton = document.getElementById('versionButton');
-        const versionsButton = document.createElement('button');
-        
-        // Create and style the versions button
-        versionsButton.id = 'versionsButton';
-        versionsButton.className = 'versions-button';
-        versionsButton.textContent = 'VERSIONS';
-        versionsButton.style.position = 'fixed';
-        versionsButton.style.top = '60px'; // Positioned below the updates banner
-        versionsButton.style.left = '20px';
-        versionsButton.style.background = 'linear-gradient(45deg, #4a4a6a, #2d2d4a)';
-        versionsButton.style.color = 'white';
-        versionsButton.style.padding = '8px 16px';
-        versionsButton.style.border = '2px solid #6a6a8a';
-        versionsButton.style.borderRadius = '5px';
-        versionsButton.style.fontWeight = '600';
-        versionsButton.style.boxShadow = '0 4px 0 #1a1a2e, 0 5px 10px rgba(0, 0, 0, 0.4)';
-        versionsButton.style.cursor = 'pointer';
-        versionsButton.style.transition = 'all 0.2s ease';
-        versionsButton.style.zIndex = '1000';
-        versionsButton.style.fontFamily = "'Courier New', monospace";
-        versionsButton.style.textTransform = 'uppercase';
-        versionsButton.style.letterSpacing = '1px';
-        
-        // Add hover effect
-        versionsButton.addEventListener('mouseenter', () => {
-            versionsButton.style.transform = 'translateY(-2px)';
-            versionsButton.style.boxShadow = '0 6px 0 #1a1a2e, 0 7px 14px rgba(0, 0, 0, 0.4)';
-            versionsButton.style.background = 'linear-gradient(45deg, #5a5a7a, #3d3d5a)';
-        });
-        
-        versionsButton.addEventListener('mouseleave', () => {
-            versionsButton.style.transform = 'translateY(0)';
-            versionsButton.style.boxShadow = '0 4px 0 #1a1a2e, 0 5px 10px rgba(0, 0, 0, 0.4)';
-            versionsButton.style.background = 'linear-gradient(45deg, #4a4a6a, #2d2d4a)';
-        });
-        
-        // Add button to the page
-        document.body.appendChild(versionsButton);
-        
-        // Toggle version overlay
-        function toggleVersionOverlay(show) {
-            if (show) {
-                versionOverlay.classList.add('active');
-                versionsButton.style.opacity = '0';
-                versionsButton.style.pointerEvents = 'none';
-            } else {
-                versionOverlay.classList.remove('active');
-                versionsButton.style.opacity = '1';
-                versionsButton.style.pointerEvents = 'auto';
-            }
-        }
-        
-        // Versions button click handler
-        versionsButton.addEventListener('click', (e) => {
-            e.stopPropagation();
-            toggleVersionOverlay(true);
-        });
-        
-        // Version button click handler (navigate to index.html)
-        versionButton.addEventListener('click', () => {
-            window.location.href = 'index.html';
-        });
-        
-        // Close version overlay when clicking outside
-        versionOverlay.addEventListener('click', (e) => {
-            if (e.target === versionOverlay) {
-                toggleVersionOverlay(false);
-            }
-        });
-        
-        // Close version overlay with Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && versionOverlay.classList.contains('active')) {
-                toggleVersionOverlay(false);
-            }
-        });
-        
-        // Ensure scrolling is enabled on page load
-        document.documentElement.style.overflow = '';
-        document.documentElement.style.height = '';
-        document.body.style.overflow = '';
-        document.body.style.height = '';
-        
-        // Force enable scrolling
-        document.documentElement.style.overflowY = 'auto';
-        document.body.style.overflowY = 'auto';
-        
-        // Ensure modal overlay is hidden on load
-        modalOverlay.style.display = 'none';
-        modalOverlay.classList.remove('active');
-        
-        // Prevent any scroll blocking
-        document.addEventListener('wheel', function(e) {
-            // Allow all wheel events
-        }, { passive: true });
-        
-        document.addEventListener('touchmove', function(e) {
-            // Allow all touch events
-        }, { passive: true });
-    </script>
-</body>
-</html>
+        </script>
