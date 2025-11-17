@@ -881,39 +881,41 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 2000;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: scale(0.95);
         }
 
         .version-overlay.active {
             opacity: 1;
             pointer-events: auto;
+            transform: scale(1);
         }
 
         .version-container {
-            background: #1a1a2e;
-            border: 2px solid #4a4a6a;
-            border-radius: 8px;
-            padding: 30px 40px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.3);
             text-align: center;
-            transform: scale(0.9);
+            transform: scale(0.8) translateY(20px);
             opacity: 0;
-            transition: all 0.3s ease;
-            max-width: 400px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             width: 90%;
             position: relative;
             overflow: hidden;
         }
 
         .version-overlay.active .version-container {
-            transform: scale(1);
+            transform: scale(1) translateY(0);
             opacity: 1;
         }
 
@@ -921,34 +923,30 @@
             content: '';
             position: absolute;
             top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1, #96f2d7);
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shimmer 3s infinite;
         }
 
         .version-container h3 {
-            color: #fff;
-            margin-bottom: 25px;
-            font-size: 1.8rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-            font-family: 'Courier New', monospace;
-            font-weight: bold;
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
         }
 
         .version-button {
-            background: linear-gradient(to bottom, #4a4a6a, #2d2d4a);
-            color: #fff;
-            border: 2px solid #6a6a8a;
-            border-radius: 5px;
-            padding: 12px 30px;
-            font-weight: 600;
+            background: linear-gradient(45deg, #007bff, #00d4ff);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            padding: 15px 30px;
             font-size: 1.1rem;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.2s ease;
-            margin-top: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
             text-transform: uppercase;
             letter-spacing: 1px;
             position: relative;
@@ -969,6 +967,39 @@
             transform: translateY(2px);
             box-shadow: 0 2px 0 #1a1a2e, 
                         0 3px 6px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Versions Button - Modern but not better than index */
+        .versions-button {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(30, 41, 59, 0.8);
+            color: #e2e8f0;
+            padding: 8px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .versions-button.hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(10px);
+        }
+        
+        .versions-button:hover {
+            background: rgba(51, 65, 85, 0.9);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
 
         @keyframes fadeIn {
@@ -1197,18 +1228,17 @@
     </style>
 </head>
 <body>
-    <!-- ALE BASKETBALL RELEASED Banner -->
+    <!-- ALE FLIGHT RELEASED Banner -->
     <div class="updates-banner" style="top: 0; background: linear-gradient(135deg, #ff6b35, #f7931e);">
         <div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
             <div style="font-weight: 700; font-size: 1.2rem; margin-bottom: 4px; display: flex; align-items: center; gap: 8px;">
-                <span class="basketball-emoji">🏀</span> 🎉 ALE BASKETBALL RELEASED TODAY!
+                <span class="flight-emoji">✈️</span> 🎉 ALE FLIGHT RELEASED TODAY!!!!
             </div>
             <div style="font-size: 0.95rem; opacity: 0.9; text-align: center; line-height: 1.4;">
-                The schools want one last challenge… and Ale is ready!<br>
-                Jump into the FIRST EVER 2-player game in the Ale Universe — team up or battle it out with friends, family, or anyone brave enough to face the court.
+                Ale is now ready to fly.
             </div>
             <div style="font-size: 0.9rem; margin-top: 6px; font-weight: 500; opacity: 0.9; text-align: center;">
-                It's time to beat the school one more time — on the basketball court! 🏀🔥
+                Play it right now and guide him through the skies!
             </div>
         </div>
     </div>
@@ -1222,6 +1252,9 @@
 
     <!-- Animated Background -->
     <div class="animated-background"></div>
+    
+    <!-- Versions Button -->
+    <button class="versions-button" id="versionsButton">Versions</button>
 
     <!-- Main Container -->
     <div class="main-container">
@@ -1291,24 +1324,17 @@
                 <div class="thumbnail-label">ALE BASKETBALL</div>
                 <a href="alegameshtml/ale_basketball.html" class="card-play-button">Play Game</a>
             </div>
-        </div>
-    </div>
 
-    <!-- COMING SOON Section -->
-    <div class="coming-soon-section">
-        <h2 class="coming-soon-title">COMING SOON</h2>
-        <div class="gallery">
-            <!-- Ale Flight Game -->
+            <!-- Game 10: ALE FLIGHT -->
             <div class="thumbnail-card" data-game="ale_flight" data-game-name="ALE FLIGHT">
                 <img src="alegamesthumbnails/ale_flight.svg" alt="ALE FLIGHT" onerror="this.src='https://via.placeholder.com/400x225/2c3e50/ffffff?text=Thumbnail+Not+Found';">
                 <div class="thumbnail-label">ALE FLIGHT</div>
-                <div class="coming-soon-sticker">COMING SOON</div>
-                <!-- Play Game button hidden until release -->
-                <button class="play-button" style="display: none;">Play Game</button>
+                <a href="alegameshtml/ale_flight.html" class="card-play-button">Play Game</a>
             </div>
         </div>
     </div>
 
+    
     <!-- Modal Overlay -->
     <div class="modal-overlay" id="modalOverlay">
         <div class="game-container" id="gameContainer">
@@ -1397,7 +1423,7 @@
             'ale_flight': {
                 name: 'ALE FLIGHT',
                 thumbnail: 'alegamesthumbnails/ale_flight.svg',
-                html: ''
+                html: 'alegameshtml/ale_flight.html'
             }
         };
 
@@ -1467,7 +1493,7 @@ and save Christmas before time runs out.
 A limited-edition holiday adventure available only for a short time!`,
             'ale_basketball': `<span class="version"><strong>VERSION:</strong> V1.0</span>   <span class="version"><strong>RELEASE DATE:</strong> November 15, 2025</span>                
 Ale wants to challenge the school to a basketball game!       All you have to do is win â€” and you'll never have to go back to class.                     This is the very first 2-player game released in the Ale Games universe,                     bringing competition, fun, and chaos to the court!`,
-            'ale_flight': `<span class="version"><strong>VERSION:</strong> V1.0</span>   <span class="version"><strong>STATUS:</strong> In Development</span>                
+            'ale_flight': `<span class="version"><strong>VERSION:</strong> V1.0</span>                
 ALE GOT A TEMPORARY POWER!                     He wants to fly through pipes like a flappy bird!                     Can you survive the challenges and help Ale reach new heights?                     Get ready for an exciting new adventure in the Ale Games universe!`
         };
 
@@ -1504,10 +1530,13 @@ ALE GOT A TEMPORARY POWER!                     He wants to fly through pipes lik
             currentGame = games[gameId];
             if (!currentGame) return;
             
+            // Hide versions button
+            toggleVersionsButton(false);
+            
             // Fade out announcement banners
-            const basketballBanner = document.querySelector('.updates-banner[style*="ff6b35"]');
+            const flightBanner = document.querySelector('.updates-banner[style*="ff6b35"]');
             const requestBanner = document.querySelector('.updates-banner[style*="120px"]');
-            if (basketballBanner) basketballBanner.classList.add('hidden');
+            if (flightBanner) flightBanner.classList.add('hidden');
             if (requestBanner) requestBanner.classList.add('hidden');
             
             // Set preview image
@@ -1549,10 +1578,15 @@ ALE GOT A TEMPORARY POWER!                     He wants to fly through pipes lik
             modalOverlay.classList.remove('active');
             document.documentElement.style.overflow = '';
             
+            // Show versions button with delay
+            setTimeout(() => {
+                toggleVersionsButton(true);
+            }, 300);
+            
             // Fade in announcement banners
-            const basketballBanner = document.querySelector('.updates-banner[style*="ff6b35"]');
+            const flightBanner = document.querySelector('.updates-banner[style*="ff6b35"]');
             const requestBanner = document.querySelector('.updates-banner[style*="120px"]');
-            if (basketballBanner) basketballBanner.classList.remove('hidden');
+            if (flightBanner) flightBanner.classList.remove('hidden');
             if (requestBanner) requestBanner.classList.remove('hidden');
             
             // Clear iframe after modal closes
@@ -1634,5 +1668,43 @@ ALE GOT A TEMPORARY POWER!                     He wants to fly through pipes lik
                 fullscreenButton.title = 'Toggle Fullscreen';
             }
         }
+
+        // Versions button functionality
+        const versionsButton = document.getElementById('versionsButton');
+        
+        // Hide versions button when game is opened
+        function toggleVersionsButton(show) {
+            versionsButton.classList.toggle('hidden', !show);
+        }
+        
+        // Toggle version overlay
+        function toggleVersionOverlay(show) {
+            if (show) {
+                versionOverlay.classList.add('active');
+                versionsButton.style.opacity = '0';
+                versionsButton.style.pointerEvents = 'none';
+            } else {
+                versionOverlay.classList.remove('active');
+                versionsButton.style.opacity = '1';
+                versionsButton.style.pointerEvents = 'auto';
+            }
+        }
+        
+        // Versions button click handler
+        versionsButton.addEventListener('click', () => {
+            toggleVersionOverlay(true);
+        });
+        
+        // Version button click handler
+        versionButton.addEventListener('click', () => {
+            window.location.href = 'index.html';
+        });
+        
+        // Close version overlay when clicking outside
+        versionOverlay.addEventListener('click', (e) => {
+            if (e.target === versionOverlay) {
+                toggleVersionOverlay(false);
+            }
+        });
 
         </script>
