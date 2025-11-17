@@ -24,9 +24,28 @@
             padding: 0;
             width: 100%;
             min-height: 100vh;
-            position: relative;
-            padding-top: 60px;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
             overflow-x: hidden;
+        }
+
+        /* Main Banner - Centered */
+        .main-banner {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            position: relative;
+            width: 100%;
+        }
+
+        /* Center banners within main banner */
+        .main-banner .modern-updates-banner {
+            margin: 20px auto 0;
+            max-width: 1000px;
+            width: 100%;
         }
 
         /* Modern Gradient Background */
@@ -140,7 +159,7 @@
             color: rgba(255, 255, 255, 0.9);
             font-size: 1.3rem;
             text-align: center;
-            margin-bottom: 40px;
+            margin: 0 0 40px 0;
             letter-spacing: 3px;
             font-weight: 400;
             text-transform: uppercase;
@@ -1275,71 +1294,158 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(5px);
+            background: radial-gradient(circle at center, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8));
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 2000;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.3s ease;
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform: scale(0.9) perspective(1000px) rotateX(5deg);
         }
 
         .version-overlay.active {
             opacity: 1;
             pointer-events: auto;
+            transform: scale(1) perspective(1000px) rotateX(0deg);
         }
 
         .version-container {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 0 30px rgba(0,0,0,0.3);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 50px;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(255, 255, 255, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
             text-align: center;
-            transform: scale(0.9);
+            transform: scale(0.7) translateY(40px) perspective(1000px) rotateX(15deg);
             opacity: 0;
-            transition: all 0.3s ease;
+            transition: all 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+            width: 90%;
+            max-width: 400px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .version-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(255, 255, 255, 0.03),
+                transparent
+            );
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+            100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
         }
 
         .version-overlay.active .version-container {
-            transform: scale(1);
+            transform: scale(1) translateY(0) perspective(1000px) rotateX(0deg);
             opacity: 1;
         }
 
         .version-container h3 {
             color: white;
-            margin-bottom: 20px;
-            font-size: 1.5rem;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            font-weight: 600;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
         }
 
         .version-button {
-            background: linear-gradient(45deg, #007bff, #00d4ff);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
-            border-radius: 15px;
-            padding: 12px 25px;
+            border-radius: 16px;
+            padding: 16px 32px;
+            font-size: 1.1rem;
             font-weight: 600;
-            font-size: 18px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 20px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 
+                0 10px 25px rgba(102, 126, 234, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .version-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .version-button:hover::before {
+            left: 100%;
         }
 
         .version-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 15px rgba(0,212,255,0.7);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 
+                0 15px 35px rgba(102, 126, 234, 0.5),
+                0 0 0 1px rgba(255, 255, 255, 0.2);
         }
-        
-        /* Modern Banner Styles */
-        /* Main Banner Container */
-        .main-banner {
-            position: relative;
-            width: 100%;
-            padding: 40px 20px 20px;
-            text-align: center;
-            background: linear-gradient(180deg, rgba(10, 15, 46, 0.95) 0%, rgba(26, 26, 64, 0.9) 100%);
+
+        .version-button:active {
+            transform: translateY(0) scale(0.98);
+            box-shadow: 
+                0 5px 15px rgba(102, 126, 234, 0.3),
+                0 0 0 1px rgba(255, 255, 255, 0.1);
+        }
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.version-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8));
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform: scale(0.9) perspective(1000px) rotateX(5deg);
+}
+
+.version-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1) perspective(1000px) rotateX(0deg);
+}
             z-index: 10;
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
         }
@@ -1501,20 +1607,20 @@
         <p class="page-subtitle">Select a game to play</p>
         
                 
-        <!-- Modern ALE BASKETBALL RELEASED Banner -->
-        <div class="modern-updates-banner" id="basketballBanner">
-            <div class="banner-close" id="closeBasketballBanner">×</div>
+        <!-- Modern ALE FLIGHT RELEASED Banner -->
+        <div class="modern-updates-banner" id="flightBanner">
+            <div class="banner-close" id="closeFlightBanner">×</div>
             <div class="banner-content">
                 <div class="banner-icon">
-                    <span class="basketball-emoji">🏀</span>
+                    <span class="flight-emoji">✈️</span>
                 </div>
                 <div class="banner-text">
                     <div class="banner-header">
-                        <span class="banner-title">🎉 ALE BASKETBALL RELEASED TODAY!</span>
+                        <span class="banner-title">🎉 ALE FLIGHT RELEASED TODAY!!!!</span>
                         <span class="banner-badge">NEW</span>
                     </div>
                     <div class="banner-message">
-                        <p>The schools want one last challenge… and Ale is ready! Jump into the FIRST EVER 2-player game in the Ale Universe — team up or battle it out with friends, family, or anyone brave enough to face the court. It's time to beat the school one more time — on the basketball court! 🏀🔥</p>
+                        <p>Ale is now ready to fly. Play it right now and guide him through the skies!</p>
                     </div>
                 </div>
             </div>
@@ -1614,26 +1720,11 @@
                 <img src="alegamesthumbnails/ale_basketball.svg" alt="ALE BASKETBALL" onerror="this.src='https://via.placeholder.com/400x225/2c3e50/ffffff?text=Thumbnail+Not+Found';">
                 <div class="thumbnail-label">ALE BASKETBALL</div>
             </div>
-        </div>
-    </div>
 
-    <!-- COMING SOON Section -->
-    <div class="coming-soon-section">
-        <h2 class="coming-soon-title">COMING SOON</h2>
-        <div class="gallery">
-            <!-- Ale Flight Game -->
+            <!-- Game 10: ALE FLIGHT -->
             <div class="thumbnail-card" data-game="ale_flight" data-game-name="ALE FLIGHT">
                 <img src="alegamesthumbnails/ale_flight.svg" alt="ALE FLIGHT" onerror="this.src='https://via.placeholder.com/400x225/2c3e50/ffffff?text=Thumbnail+Not+Found';">
                 <div class="thumbnail-label">ALE FLIGHT</div>
-                <div class="coming-soon-sticker">COMING SOON</div>
-                <div class="coming-soon-message">
-                    <div class="version">NEW GAME</div>
-                    <p>ALE GOT A TEMPORARY POWER!<br>
-                    He wants to fly through pipes like a flappy bird!<br>
-                    Can you survive the challenges and help Ale reach new heights?</p>
-                </div>
-                <!-- Play Game button hidden until release -->
-                <button class="play-button" style="display: none;">Play Game</button>
             </div>
         </div>
     </div>
@@ -1726,7 +1817,7 @@
             'ale_flight': {
                 name: 'ALE FLIGHT',
                 thumbnail: 'alegamesthumbnails/ale_flight.svg',
-                html: ''
+                html: 'alegameshtml/ale_flight.html'
             }
         };
 
@@ -1788,7 +1879,7 @@ and save Christmas before time runs out.
 A limited-edition holiday adventure available only for a short time!`,
             'ale_basketball': `<span class="version"><strong>VERSION:</strong> V1.0</span>   <span class="version"><strong>RELEASE DATE:</strong> November 15, 2025</span>                
 Ale wants to challenge the school to a basketball game!       All you have to do is win â€” and you'll never have to go back to class.                     This is the very first 2-player game released in the Ale Games universe,                     bringing competition, fun, and chaos to the court!`,
-            'ale_flight': `<span class="version"><strong>VERSION:</strong> V1.0</span>   <span class="version"><strong>STATUS:</strong> In Development</span>                
+            'ale_flight': `<span class="version"><strong>VERSION:</strong> V1.0</span>                
 ALE GOT A TEMPORARY POWER!                     He wants to fly through pipes like a flappy bird!                     Can you survive the challenges and help Ale reach new heights?                     Get ready for an exciting new adventure in the Ale Games universe!`
         };
 
@@ -2143,13 +2234,13 @@ ALE GOT A TEMPORARY POWER!                     He wants to fly through pipes lik
             }
         });
         
-        // Basketball banner close functionality
-        const basketballBanner = document.getElementById('basketballBanner');
-        const closeBasketballBanner = document.getElementById('closeBasketballBanner');
+        // Flight banner close functionality
+        const flightBanner = document.getElementById('flightBanner');
+        const closeFlightBanner = document.getElementById('closeFlightBanner');
         
-        if (closeBasketballBanner) {
-            closeBasketballBanner.addEventListener('click', () => {
-                basketballBanner.style.display = 'none';
+        if (closeFlightBanner) {
+            closeFlightBanner.addEventListener('click', () => {
+                flightBanner.style.display = 'none';
             });
         }
 
